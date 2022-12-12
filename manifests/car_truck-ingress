@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car_truck-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: car_truck-ingress
+    http:
+      paths:
+      - path: /car
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: car_catalog-service
+            port:
+              number: 80
+      - path: /truck
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: truck_catalog-service
+            port:
+              number: 80
