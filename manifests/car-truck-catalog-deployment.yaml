@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: car_catalog-deployment
+  name: car-catalog-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: car_catalog
+      app: car-catalog
   template:
     metadata:
       labels:
-        app: car_catalog
+        app: car-catalog
     spec:
       containers:
-      - name: car_catalog
+      - name: car-catalog
         image: nginxdemos/hello
         ports:
         - containerPort: 80
@@ -21,31 +21,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: car_catalog-service
+  name: car-catalog-service
   labels:
-    app: car_catalog
+    app: car-catalog
 spec:
   ports:
   - port: 80
   selector:
-    app: car_catalog
+    app: car-catalog
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: truck_catalog-deployment
+  name: truck-catalog-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: truck_catalog
+      app: truck-catalog
   template:
     metadata:
       labels:
-        app: truck_catalog
+        app: truck-catalog
     spec:
       containers:
-      - name: truck_catalog
+      - name: truck-catalog
         image: nginxdemos/hello
         ports:
         - containerPort: 80
@@ -53,11 +53,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: truck_catalog-service
+  name: truck-catalog-service
   labels:
-    app: truck_catalog
+    app: truck-catalog
 spec:
   ports:
   - port: 80
   selector:
-    app: truck_catalog
+    app: truck-catalog
