@@ -26,8 +26,8 @@ spec:
         host: car-catalog-service
         port:
           number: 80
-   route:
-   - destination:
-       host: truck-catalog-service
-       port:
-         number: 80
+  - route:
+    - destination:
+        host: truck-catalog-service
+        port:
+          number: 80
