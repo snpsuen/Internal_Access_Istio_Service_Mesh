@@ -8,15 +8,8 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /static
-    - uri:
-        exact: /login
-    - uri:
-        exact: /logout
-    - uri:
-        prefix: /api/v1/products
-  
-  - route:
+        prefix: /web
+    route:
     - destination:
         host: webservice
         subset: v1
@@ -25,3 +18,16 @@ spec:
         host: webservice
         subset: v0
       weight: 75
+  - match:
+    - uri:
+        prefix: /car
+    route:
+    - destination:
+        host: car-catalog-service
+        port:
+          number: 80
+   route:
+   - destination:
+       host: truck-catalog-service
+       port:
+         number: 80
