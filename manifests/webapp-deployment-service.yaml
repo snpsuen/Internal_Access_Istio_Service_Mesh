@@ -1,18 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp-deployment
+  name: webapp-deployment-4.0
   labels:
     app: webapp
+    version: v4.0
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: webapp
+      version: v4.0
   template:
     metadata:
       labels:
         app: webapp
+        version: v4.0
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
