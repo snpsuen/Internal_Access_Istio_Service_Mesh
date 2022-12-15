@@ -9,6 +9,8 @@ spec:
   - match:
     - uri:
         prefix: /web
+    rewrite:
+      uri: /    
     route:
     - destination:
         host: webservice
