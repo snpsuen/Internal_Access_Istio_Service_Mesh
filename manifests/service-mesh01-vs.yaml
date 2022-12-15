@@ -9,9 +9,11 @@ spec:
   - match:
     - uri:
         prefix: /webapp
+    rewrite:
+      uri: /
     route:
     - destination:
-        host: webservice
+        host: webapp-service
         port:
           number: 80
   - match:
