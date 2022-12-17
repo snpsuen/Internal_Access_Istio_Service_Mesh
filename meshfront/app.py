@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, urllib.request
+from flask import Flask, render_template, requests
 
 app = Flask(__name__)
 
@@ -10,6 +10,5 @@ def home():
 def accessmesh():
   if request.method == 'POST':
     path = request.form['path']
-    with urllib.request.urlopen(f"http://service-mesh/{path}") as response:
-      contents = response.read()
-    print(contents)
+    res = requests.get(f"http://service-mesh/{path}")
+    print(res.text)
