@@ -2,7 +2,7 @@
 
 ```
 docker build -t snpsuen/meshfront:v2 -f Dockerfile .
-docker run -d --name meshfront -p 5005:5005 snpsuen/meshfront:
+docker run -d --name meshfront -p 5005:5005 snpsuen/meshfront:v2
 docker login -u snpsuen
 docker push snpsuen/meshfront:v2
 ```
