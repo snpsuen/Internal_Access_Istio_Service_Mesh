@@ -11,4 +11,5 @@ def home():
 def accessmesh():
   if request.method == 'POST':
     path = request.form['path']
-    return(f"You are going to get http://service-mesh/{path}\n")
+    res = requests.get(f"http://gist.github.com/{path}")
+    return(res.text)
