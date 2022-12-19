@@ -12,4 +12,4 @@ def accessmesh():
   if request.method == 'POST':
     path = request.form['path']
     res = requests.get(f"http://service-mesh/{path}")
-    print(res.text)
+    return(res.text)
