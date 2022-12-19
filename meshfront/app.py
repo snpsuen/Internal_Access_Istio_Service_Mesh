@@ -9,7 +9,7 @@ def home():
 
 @app.route('/accessmesh', methods=['GET', 'POST'])
 def accessmesh():
-  if request.method == 'GET':
+  if request.method == 'POST':
     path = request.form['path']
     res = requests.get(f"http://service-mesh/{path}")
     print(res.text)
