@@ -11,4 +11,4 @@ def home():
 def accessmesh():
   if request.method == 'POST':
     path = request.form['path']
-    print(f"You are going to get http://service-mesh/{path}")
+    return(f"You are going to get http://service-mesh/{path}\n")
