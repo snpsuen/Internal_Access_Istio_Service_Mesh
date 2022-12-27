@@ -1,0 +1,953 @@
+[
+    {
+        "name": "15010",
+        "virtualHosts": [
+            {
+                "name": "allow_any",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "allow_any",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "PassthroughCluster",
+                            "timeout": "0s",
+                            "maxGrpcTimeout": "0s"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "istiod.istio-system.svc.cluster.local:15010",
+                "domains": [
+                    "istiod.istio-system.svc.cluster.local",
+                    "istiod.istio-system",
+                    "istiod.istio-system.svc",
+                    "10.100.45.190"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|15010||istiod.istio-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "istiod.istio-system.svc.cluster.local:15010/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "car-catalog-service.default.svc.cluster.local:80",
+        "virtualHosts": [
+            {
+                "name": "car-catalog-service.default.svc.cluster.local:80",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||car-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "car-catalog-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "truck-catalog-service.default.svc.cluster.local:80",
+        "virtualHosts": [
+            {
+                "name": "truck-catalog-service.default.svc.cluster.local:80",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||truck-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "truck-catalog-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "kube-dns.kube-system.svc.cluster.local:9153",
+        "virtualHosts": [
+            {
+                "name": "kube-dns.kube-system.svc.cluster.local:9153",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|9153||kube-dns.kube-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "kube-dns.kube-system.svc.cluster.local:9153/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "istio-ingressgateway.istio-system.svc.cluster.local:15021",
+        "virtualHosts": [
+            {
+                "name": "istio-ingressgateway.istio-system.svc.cluster.local:15021",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|15021||istio-ingressgateway.istio-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "istio-ingressgateway.istio-system.svc.cluster.local:15021/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "15014",
+        "virtualHosts": [
+            {
+                "name": "allow_any",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "allow_any",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "PassthroughCluster",
+                            "timeout": "0s",
+                            "maxGrpcTimeout": "0s"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "istiod.istio-system.svc.cluster.local:15014",
+                "domains": [
+                    "istiod.istio-system.svc.cluster.local",
+                    "istiod.istio-system",
+                    "istiod.istio-system.svc",
+                    "10.100.45.190"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|15014||istiod.istio-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "istiod.istio-system.svc.cluster.local:15014/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "meshfront-service.default.svc.cluster.local:80",
+        "virtualHosts": [
+            {
+                "name": "meshfront-service.default.svc.cluster.local:80",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||meshfront-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "meshfront-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "80",
+        "virtualHosts": [
+            {
+                "name": "allow_any",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "allow_any",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "PassthroughCluster",
+                            "timeout": "0s",
+                            "maxGrpcTimeout": "0s"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "car-catalog-service.default.svc.cluster.local:80",
+                "domains": [
+                    "car-catalog-service.default.svc.cluster.local",
+                    "car-catalog-service",
+                    "car-catalog-service.default.svc",
+                    "car-catalog-service.default",
+                    "10.107.251.227"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||car-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "car-catalog-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "istio-egressgateway.istio-system.svc.cluster.local:80",
+                "domains": [
+                    "istio-egressgateway.istio-system.svc.cluster.local",
+                    "istio-egressgateway.istio-system",
+                    "istio-egressgateway.istio-system.svc",
+                    "10.97.51.139"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||istio-egressgateway.istio-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "istio-egressgateway.istio-system.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "istio-ingressgateway.istio-system.svc.cluster.local:80",
+                "domains": [
+                    "istio-ingressgateway.istio-system.svc.cluster.local",
+                    "istio-ingressgateway.istio-system",
+                    "istio-ingressgateway.istio-system.svc",
+                    "10.109.165.9"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||istio-ingressgateway.istio-system.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "istio-ingressgateway.istio-system.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "meshfront-service.default.svc.cluster.local:80",
+                "domains": [
+                    "meshfront-service.default.svc.cluster.local",
+                    "meshfront-service",
+                    "meshfront-service.default.svc",
+                    "meshfront-service.default",
+                    "10.106.0.240"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||meshfront-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "meshfront-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "service-mesh.default.svc.cluster.local:80",
+                "domains": [
+                    "service-mesh.default.svc.cluster.local",
+                    "service-mesh",
+                    "service-mesh.default.svc",
+                    "service-mesh.default",
+                    "10.100.173.189"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/web",
+                            "caseSensitive": true
+                        },
+                        "route": {
+                            "weightedClusters": {
+                                "clusters": [
+                                    {
+                                        "name": "outbound|80|v1|webservice.default.svc.cluster.local",
+                                        "weight": 25
+                                    },
+                                    {
+                                        "name": "outbound|80|v0|webservice.default.svc.cluster.local",
+                                        "weight": 75
+                                    }
+                                ],
+                                "totalWeight": 100
+                            },
+                            "prefixRewrite": "/",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/service-mesh-vs"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "service-mesh-vs:80/web*"
+                        }
+                    },
+                    {
+                        "match": {
+                            "prefix": "/car",
+                            "caseSensitive": true
+                        },
+                        "route": {
+                            "cluster": "outbound|80||car-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/service-mesh-vs"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "car-catalog-service.default.svc.cluster.local:80/car*"
+                        }
+                    },
+                    {
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||truck-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/service-mesh-vs"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "truck-catalog-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "truck-catalog-service.default.svc.cluster.local:80",
+                "domains": [
+                    "truck-catalog-service.default.svc.cluster.local",
+                    "truck-catalog-service",
+                    "truck-catalog-service.default.svc",
+                    "truck-catalog-service.default",
+                    "10.111.211.70"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||truck-catalog-service.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "truck-catalog-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            },
+            {
+                "name": "webservice.default.svc.cluster.local:80",
+                "domains": [
+                    "webservice.default.svc.cluster.local",
+                    "webservice",
+                    "webservice.default.svc",
+                    "webservice.default",
+                    "10.105.22.111"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "outbound|80||webservice.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts",
+                                        "typedConfig": {
+                                            "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+                                        }
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "decorator": {
+                            "operation": "webservice.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false,
+        "ignorePortInHostMatching": true
+    },
+    {
+        "name": "inbound|5005||",
+        "virtualHosts": [
+            {
+                "name": "inbound|http|80",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "inbound|5005||",
+                            "timeout": "0s",
+                            "maxStreamDuration": {
+                                "maxStreamDuration": "0s",
+                                "grpcTimeoutHeaderMax": "0s"
+                            }
+                        },
+                        "decorator": {
+                            "operation": "meshfront-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ]
+            }
+        ],
+        "validateClusters": false
+    },
+    {
+        "virtualHosts": [
+            {
+                "name": "backend",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/healthz/ready"
+                        },
+                        "route": {
+                            "cluster": "agent"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "virtualHosts": [
+            {
+                "name": "backend",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/stats/prometheus"
+                        },
+                        "route": {
+                            "cluster": "prometheus_stats"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "inbound|5005||",
+        "virtualHosts": [
+            {
+                "name": "inbound|http|80",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "inbound|5005||",
+                            "timeout": "0s",
+                            "maxStreamDuration": {
+                                "maxStreamDuration": "0s",
+                                "grpcTimeoutHeaderMax": "0s"
+                            }
+                        },
+                        "decorator": {
+                            "operation": "meshfront-service.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ]
+            }
+        ],
+        "validateClusters": false
+    },
+    {
+        "name": "InboundPassthroughClusterIpv4",
+        "virtualHosts": [
+            {
+                "name": "inbound|http|0",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "InboundPassthroughClusterIpv4",
+                            "timeout": "0s",
+                            "maxStreamDuration": {
+                                "maxStreamDuration": "0s",
+                                "grpcTimeoutHeaderMax": "0s"
+                            }
+                        },
+                        "decorator": {
+                            "operation": ":0/*"
+                        }
+                    }
+                ]
+            }
+        ],
+        "validateClusters": false
+    },
+    {
+        "name": "InboundPassthroughClusterIpv4",
+        "virtualHosts": [
+            {
+                "name": "inbound|http|0",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "name": "default",
+                        "match": {
+                            "prefix": "/"
+                        },
+                        "route": {
+                            "cluster": "InboundPassthroughClusterIpv4",
+                            "timeout": "0s",
+                            "maxStreamDuration": {
+                                "maxStreamDuration": "0s",
+                                "grpcTimeoutHeaderMax": "0s"
+                            }
+                        },
+                        "decorator": {
+                            "operation": ":0/*"
+                        }
+                    }
+                ]
+            }
+        ],
+        "validateClusters": false
+    }
+]
