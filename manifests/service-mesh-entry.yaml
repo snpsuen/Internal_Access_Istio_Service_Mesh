@@ -10,4 +10,6 @@ spec:
     name: http
     protocol: HTTP
   location: MESH_INTERNAL
-  resolution: NONE
+  resolution: DNS
+  endpoints:
+  - address: service-mesh.default.svc.cluster.local
