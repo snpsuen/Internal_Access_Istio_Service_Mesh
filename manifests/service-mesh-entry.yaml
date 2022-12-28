@@ -5,11 +5,11 @@ metadata:
 spec:
   hosts:
   - service-mesh
-  addresses:
-  - 10.100.173.189
   ports:
   - number: 80
     name: http
     protocol: HTTP
   location: MESH_INTERNAL
-  resolution: NONE
+  resolution: STATIC
+  endpoints:
+  - address: 10.100.173.189
