@@ -10,6 +10,4 @@ spec:
     name: http
     protocol: HTTP
   location: MESH_INTERNAL
-  resolution: STATIC
-  endpoints:
-  - address: 10.100.173.189
+  resolution: NONE
