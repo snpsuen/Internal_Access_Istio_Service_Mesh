@@ -12,7 +12,7 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/meshfront-service.yaml
 kubectl get svc
 ```
-Deploy the podless K8s service as an internal entry point to the service mesh.
+Now the crux of the exercise is to set up a podless K8s service as an internal entry point to the service mesh.
 ~~~
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh.yaml
 ~~~
@@ -23,7 +23,7 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh-vs.yaml
 ~~~
 
-Now land in the home page (index.html) on meshfront-service via the given load balancing VIP or node port of one of the K8s hosts, and select a backend service to access.
+Land in the home page (index.html) on meshfront-service via the given load balancing VIP or node port of one of the K8s hosts, and select a backend service to access.
 
 ![Meshfront landing page](Interneal_service_mesh_portal_cut.jpg)
 
