@@ -10,6 +10,7 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/car-truck-catalog-deployment.yaml
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/meshfront-deployment.yaml
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/meshfront-service.yaml
+kubectl get svc
 ```
 Deploy the podless K8s service as an internal entry point to the service mesh.
 ~~~
@@ -22,6 +23,21 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh-vs.yaml
 ~~~
 
-Land 
+Now land in the home page (index.html) on meshfront-service via the given load balancing VIP or node port of one of the K8s hosts, and select a backend service to access.
+
+![Meshfront landing page](Interneal_service_mesh_portal_cut.jpg)
+
+Alternatively, use curl on a K8s host to post requests repetively to meshfront-service via the given node port.
+~~~
+while true
+do
+  curl -X POST -F 'path=web' http://localhost:<NodePort>/accessmesh
+  echo ""
+  curl -X POST -F 'path=car' http://localhost:<NodePort>/accessmesh | grep car
+  curl -X POST -F 'path=truck' http://localhost:<NodePort>/accessmesh | grep truck
+  sleep 3
+done
+~~~
+
 
 
