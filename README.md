@@ -12,7 +12,7 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/meshfront-service.yaml
 kubectl get svc
 ```
-Set up a podless K8s service as an internal entry point to the service mesh.
+Set up a podless K8s service as an internal entry point to the service mesh. It is the protagonist of our user case.
 ~~~
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh.yaml
 ~~~
