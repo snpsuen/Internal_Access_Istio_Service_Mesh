@@ -27,7 +27,7 @@ Land in the home page (index.html) on meshfront-service via the given load balan
 
 ![Meshfront landing page](Interneal_service_mesh_portal_cut.jpg)
 
-Alternatively, use curl on a K8s host to post requests repetively to meshfront-service via the given node port.
+Alternatively, use curl on a K8s host to generate POST traffic repetively to meshfront-service via the given node port.
 ~~~
 while true
 do
