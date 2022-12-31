@@ -12,12 +12,12 @@ kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Isti
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/meshfront-service.yaml
 kubectl get svc
 ```
-Now the crux of the exercise is to set up a podless K8s service as an internal entry point to the service mesh.
+Set up a podless K8s service as an internal entry point to the service mesh.
 ~~~
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh.yaml
 ~~~
 
-Deploy the desirable Istio destination rule and virtual service.
+Set up the desirable Istio destination rule and virtual service. The crux of the exercise is to configure the virtual service for the podless to mediate between the frontend and backend services.
 ~~~
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/destination-rule-v4041.yaml
 kubectl apply -f https://raw.githubusercontent.com/snpsuen/Intra-K8s_Access_Istio_Service_Mesh/main/manifests/service-mesh-vs.yaml
