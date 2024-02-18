@@ -1,4 +1,32 @@
 apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: service-mesh
+  labels:
+    account: service-mesh
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-catalog-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-catalog
+  template:
+    metadata:
+      labels:
+        app: car-catalog
+    spec:
+      serviceAccountName: car-truck-web
+      containers:
+      - name: car-catalog
+        image: nginxdemos/hello
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: service-mesh
