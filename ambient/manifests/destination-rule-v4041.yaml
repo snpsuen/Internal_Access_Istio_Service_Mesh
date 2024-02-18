@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: webapp-destination
 spec:
-  host: webservice # interpreted as reviews.foo.svc.cluster.local
+  host: webservice # interpreted as webservice.svc.cluster.local
   trafficPolicy:
     connectionPool:
       tcp:
