@@ -8,20 +8,20 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: car-catalog-deployment
+  name: service-mesh-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: car-catalog
+      app: service-mesh
   template:
     metadata:
       labels:
-        app: car-catalog
+        app: service-mesh
     spec:
-      serviceAccountName: car-truck-web
+      serviceAccountName: service-mesh
       containers:
-      - name: car-catalog
+      - name: service-mesh
         image: nginxdemos/hello
         ports:
         - containerPort: 80
@@ -30,8 +30,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-mesh
+  labels:
+    app: service-mesh
 spec:
   ports:
   - name: http-service-mesh
     protocol: TCP
     port: 80
+  selector:
+    app: service-mesh
