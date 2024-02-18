@@ -1,10 +1,3 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: car-truck-web
-  labels:
-    account: car-truck-web
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +12,6 @@ spec:
       labels:
         app: car-catalog
     spec:
-      serviceAccountName: car-truck-web
       containers:
       - name: car-catalog
         image: nginxdemos/hello
@@ -52,7 +44,6 @@ spec:
       labels:
         app: truck-catalog
     spec:
-      serviceAccountName: car-truck-web
       containers:
       - name: truck-catalog
         image: nginxdemos/hello
@@ -70,4 +61,3 @@ spec:
   - port: 80
   selector:
     app: truck-catalog
----
