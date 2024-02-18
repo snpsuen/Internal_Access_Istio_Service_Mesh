@@ -19,7 +19,6 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: car-truck-web
       containers:
       - name: webapp
         image: snpsuen/web-app:4.0
@@ -60,7 +59,6 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: car-truck-web
       containers:
       - name: webapp
         image: snpsuen/web-app:4.1
