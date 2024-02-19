@@ -22,7 +22,10 @@ spec:
       serviceAccountName: service-mesh
       containers:
       - name: service-mesh
-        image: nginxdemos/hello
+        image: busybox
+        command:
+        - sleep
+        - infinity
         ports:
         - containerPort: 80
 ---
